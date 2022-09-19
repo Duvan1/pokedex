@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Pokemon } from 'src/lib/models/pokemon.model';
 import { Location } from '@angular/common';
 import { PokeServiceService } from 'src/lib/services/pokemon/poke-service.service';
+import { NotifyHelper } from 'src/lib/helper/notify.helper';
 
 @Component({
   selector: 'pkm-poke-summary',
@@ -15,7 +16,8 @@ export class PokeSummaryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private pokeService: PokeServiceService,
-    private location: Location
+    private location: Location,
+    private notifyService: NotifyHelper
   ) {}
 
   ngOnInit(): void {
@@ -25,12 +27,22 @@ export class PokeSummaryComponent implements OnInit {
   getPokemonFromRoute() {
     return this.route.paramMap.subscribe((map) => {
       let pokeId = map.get('pokeId');
-      this.pokeService.getPokemon(pokeId).subscribe((poke) => {
-        this.pokeService.getPokemonFlavor(pokeId).subscribe((flavor: any) => {
-          poke.flavor_text = flavor.flavor_text_entries![0].flavor_text;
-          this.pokemon = poke;
-        });
-      });
+      this.pokeService.getPokemon(pokeId).subscribe(
+        (poke) => {
+          this.pokeService.getPokemonFlavor(pokeId).subscribe(
+            (flavor: any) => {
+              poke.flavor_text = flavor.flavor_text_entries![0].flavor_text;
+              this.pokemon = poke;
+            },
+            (err) => {
+              this.notifyService.error('Error salvaje ha aparecido.');
+            }
+          );
+        },
+        (err) => {
+          this.notifyService.error('Error salvaje ha aparecido.');
+        }
+      );
     });
   }
 
@@ -50,6 +62,7 @@ export class PokeSummaryComponent implements OnInit {
     else listFav = listFav.filter((lf) => lf !== id);
     localStorage.setItem('poke_fav', JSON.stringify(listFav));
     this.pokeService.favPokemons.next(listFav.length);
+    this.notifyService.success('Agregado con éxito');
   }
 
   goBack(): void {

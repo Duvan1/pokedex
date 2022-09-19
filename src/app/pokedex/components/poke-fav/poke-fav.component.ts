@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/lib/models/pokemon.model';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { PokeServiceService } from 'src/lib/services/pokemon/poke-service.service';
+import { NotifyHelper } from 'src/lib/helper/notify.helper';
 
 @Component({
   selector: 'pkm-poke-fav',
@@ -12,7 +13,8 @@ export class PokeFavComponent implements OnInit {
   pokemons: Pokemon[] = [];
   constructor(
     private pokeService: PokeServiceService,
-    private location: Location
+    private location: Location,
+    private notifyService: NotifyHelper
   ) {}
 
   ngOnInit(): void {
@@ -25,9 +27,14 @@ export class PokeFavComponent implements OnInit {
     );
     this.pokemons = [];
     listFav.forEach((lp) => {
-      this.pokeService.getPokemon(lp).subscribe((pokemon) => {
-        this.pokemons.push(pokemon);
-      });
+      this.pokeService.getPokemon(lp).subscribe(
+        (pokemon) => {
+          this.pokemons.push(pokemon);
+        },
+        (err) => {
+          this.notifyService.error('Error salvaje ha aparecido.');
+        }
+      );
     });
   }
 

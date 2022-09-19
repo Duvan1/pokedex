@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { NotifyHelper } from 'src/lib/helper/notify.helper';
 import { PokeResponseResult } from 'src/lib/models/poke-response.model';
 import { Pokemon } from 'src/lib/models/pokemon.model';
 import { PokeServiceService } from 'src/lib/services/pokemon/poke-service.service';
@@ -17,7 +18,10 @@ export class PokeListComponent implements OnInit {
   throttle = 0;
   distance = 2;
 
-  constructor(private pokeService: PokeServiceService) {}
+  constructor(
+    private pokeService: PokeServiceService,
+    private notifyService: NotifyHelper
+  ) {}
 
   ngOnInit(): void {
     this.getPokemons();
@@ -53,12 +57,22 @@ export class PokeListComponent implements OnInit {
   }
 
   getPokemons(offset?: number) {
-    this.pokeService.get(offset).subscribe((res) => {
-      res.results.forEach((poke: PokeResponseResult) => {
-        this.pokeService.getPokemon(poke.name).subscribe((pokemon) => {
-          this.pokemonsAuxList.push(pokemon);
+    this.pokeService.get(offset).subscribe(
+      (res) => {
+        res.results.forEach((poke: PokeResponseResult) => {
+          this.pokeService.getPokemon(poke.name).subscribe(
+            (pokemon) => {
+              this.pokemonsAuxList.push(pokemon);
+            },
+            (err : any) => {
+              this.notifyService.error('Error salvaje ha aparecido.');
+            }
+          );
         });
-      });
-    });
+      },
+      (err) => {
+        this.notifyService.error('Error salvaje ha aparecido.');
+      }
+    );
   }
 }
