@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { PokeServiceService } from 'src/lib/services/pokemon/poke-service.service';
 import { AppRoutingModule } from './app-routing.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {
   HttpClient,
   HttpClientModule,

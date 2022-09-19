@@ -10,8 +10,12 @@ import { PokeServiceService } from 'src/lib/services/pokemon/poke-service.servic
 })
 export class PokeListComponent implements OnInit {
   @Input() pokeKeyWord!: string;
+
   public pokemons: Pokemon[] = [];
   public pokemonsAuxList: Pokemon[] = [];
+
+  throttle = 0;
+  distance = 2;
 
   constructor(private pokeService: PokeServiceService) {}
 
@@ -23,6 +27,10 @@ export class PokeListComponent implements OnInit {
     if (changes['pokeKeyWord']) {
       this.filterPokemons();
     }
+  }
+
+  onScroll(): void {
+    this.getPokemons(this.pokemons.length);
   }
 
   filterPokemons() {

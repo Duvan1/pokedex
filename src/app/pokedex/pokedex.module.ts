@@ -11,6 +11,7 @@ import { BaseModule } from '../base/base.module';
 import { PokeFilterComponent } from './components/poke-filter/poke-filter.component';
 import { PokeSummaryComponent } from './components/poke-summary/poke-summary.component';
 import { PokeNotFoundComponent } from './components/poke-not-found/poke-not-found.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,12 @@ import { PokeNotFoundComponent } from './components/poke-not-found/poke-not-foun
     PokeSummaryComponent,
     PokeNotFoundComponent,
   ],
-  imports: [BaseModule, CommonModule, PokedexRoutingModule, FormsModule],
+  imports: [
+    BaseModule,
+    CommonModule,
+    PokedexRoutingModule,
+    FormsModule,
+    InfiniteScrollModule,
+  ],
 })
 export class PokedexModule {}

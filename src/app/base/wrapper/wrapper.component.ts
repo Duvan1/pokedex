@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { PokeServiceService } from 'src/lib/services/pokemon/poke-service.service';
+import { PokeSpinnerComponent } from '../poke-spinner/poke-spinner.component';
 
 @Component({
   selector: 'pkm-wrapper',
@@ -9,6 +10,8 @@ import { PokeServiceService } from 'src/lib/services/pokemon/poke-service.servic
   styleUrls: ['./wrapper.component.scss'],
 })
 export class WrapperComponent implements OnInit {
+  public spinnerComponent = PokeSpinnerComponent;
+
   logo: string = '/assets/logo.svg';
   unsubscribe = new Subject();
   countFavPokemons: number = 0;

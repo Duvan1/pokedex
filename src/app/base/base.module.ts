@@ -8,6 +8,7 @@ import { PkmFavButtonComponent } from './pkm-fav-button/pkm-fav-button.component
 import { PkmTopBarComponent } from './pkm-top-bar/pkm-top-bar.component';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { PipesModule } from './pipes.module';
+import { PokeSpinnerComponent } from './poke-spinner/poke-spinner.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { PipesModule } from './pipes.module';
     PkmButtonComponent,
     PkmFavButtonComponent,
     PkmTopBarComponent,
+    PokeSpinnerComponent,
   ],
   imports: [
     CommonModule,

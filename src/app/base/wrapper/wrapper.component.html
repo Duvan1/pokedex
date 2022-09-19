@@ -1,5 +1,11 @@
-<pkm-top-bar [counter]="countFavPokemons" [logo]="logo" (goToFav)="goToFav()" id="pokeId"></pkm-top-bar>
+<pkm-top-bar
+  [counter]="countFavPokemons"
+  [logo]="logo"
+  (goToFav)="goToFav()"
+  id="pokeId"
+></pkm-top-bar>
 <div class="container mx-auto pt-4">
   <router-outlet></router-outlet>
 </div>
 <a class="btn-float clickable" (click)="goToTop()">☝️</a>
+<ng-http-loader [entryComponent]="spinnerComponent"></ng-http-loader>

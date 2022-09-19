@@ -1,4 +1,13 @@
-<div class="row" *ngIf="pokemons.length > 0; else notFound">
+<div
+  class="row"
+  id="poke__container"
+  *ngIf="pokemons.length > 0; else notFound"
+  infinite-scroll
+  [infiniteScrollDistance]="distance"
+  [infiniteScrollThrottle]="throttle"
+  (scrolled)="onScroll()"
+  style="float: left; overflow-y: auto;"
+>
   <div
     class="col-md-6 col-lg-4 col-sm-6 col-12"
     *ngFor="let pokemon of pokemons"
@@ -6,7 +15,7 @@
     <pkm-poke-item [pokemon]="pokemon"></pkm-poke-item>
   </div>
 
-  <div class="col-12 mb-4">
+  <!-- <div class="col-12 mb-4">
     <div class="d-flex align-items-center justify-content-center">
       <pkm-button
         (eventPkm)="getPokemons(pokemons.length)"
@@ -14,7 +23,7 @@
         [pkmType]="'default'"
       ></pkm-button>
     </div>
-  </div>
+  </div> -->
 </div>
 
 <ng-template #notFound>

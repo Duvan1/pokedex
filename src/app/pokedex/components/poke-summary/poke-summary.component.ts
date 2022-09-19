@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Pokemon } from 'src/lib/models/pokemon.model';
+import { Location } from '@angular/common';
 import { PokeServiceService } from 'src/lib/services/pokemon/poke-service.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class PokeSummaryComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private pokeService: PokeServiceService
+    private pokeService: PokeServiceService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -31,11 +33,17 @@ export class PokeSummaryComponent implements OnInit {
   }
 
   addFav(id: number): void {
-    let listFav: number[] = JSON.parse(localStorage.getItem('poke_fav') || '[]');
+    let listFav: number[] = JSON.parse(
+      localStorage.getItem('poke_fav') || '[]'
+    );
     let existsFav = listFav.find((lf) => lf === id);
     if (!existsFav) listFav.push(id);
     else listFav = listFav.filter((lf) => lf !== id);
     localStorage.setItem('poke_fav', JSON.stringify(listFav));
     this.pokeService.favPokemons.next(listFav.length);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

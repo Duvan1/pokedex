@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/lib/models/pokemon.model';
+import {Location} from '@angular/common';
 import { PokeServiceService } from 'src/lib/services/pokemon/poke-service.service';
 
 @Component({
@@ -9,7 +10,10 @@ import { PokeServiceService } from 'src/lib/services/pokemon/poke-service.servic
 })
 export class PokeFavComponent implements OnInit {
   pokemons: Pokemon[] = [];
-  constructor(private pokeService: PokeServiceService) {}
+  constructor(
+    private pokeService: PokeServiceService,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     this.getFavPokemons();
@@ -25,5 +29,9 @@ export class PokeFavComponent implements OnInit {
         this.pokemons.push(pokemon);
       });
     });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

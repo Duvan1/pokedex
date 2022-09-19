@@ -21,12 +21,13 @@ export class PokeServiceService {
 
   //Obtiene pokemones
   get(offset?: number): Observable<PokeResponse> {
-    return this.http.get<any>(`${this.baseUrl}/pokemon/`, {
-      params: {
-        offset: offset ? offset : 0,
-        limit: 9,
-      },
-    });
+    return this.http
+      .get<any>(`${this.baseUrl}/pokemon/`, {
+        params: {
+          offset: offset ? offset : 0,
+          limit: 18,
+        },
+      });
   }
 
   getPokemon(name?: string | number | null): Observable<Pokemon> {
