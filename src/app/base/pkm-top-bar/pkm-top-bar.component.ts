@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pkm-top-bar',
@@ -10,7 +11,11 @@ export class PkmTopBarComponent implements OnInit {
   @Input() counter!: number;
   @Output() goToFav: EventEmitter<void> = new EventEmitter();
 
-  constructor() {}
+  constructor(private route: Router) {}
 
   ngOnInit(): void {}
+
+  goToHome() {
+    this.route.navigateByUrl('pokedex');
+  }
 }
