@@ -34,6 +34,13 @@ export class PokeSummaryComponent implements OnInit {
     });
   }
 
+  isFavCheck(id: number): boolean {
+    let listFav: number[] = JSON.parse(
+      localStorage.getItem('poke_fav') || '[]'
+    );
+    return listFav.find((lf) => lf === id) ? true : false;
+  }
+
   addFav(id: number): void {
     let listFav: number[] = JSON.parse(
       localStorage.getItem('poke_fav') || '[]'
