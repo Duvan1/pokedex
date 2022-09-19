@@ -1,5 +1,5 @@
 <div class="row" route="/pokedex">
-  <i class="icon icon-sm ic-arrow clickable" [routerLink]="['pokedex']"></i>
+  <i class="icon icon-sm ic-arrow clickable" (click)="goBack()"></i>
 </div>
 <div *ngIf="pokemon" class="row mb-4">
   <div class="col-lg-8 col-12 mb-md-2">
@@ -27,7 +27,7 @@
               </div>
             </div>
             <p class="text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              {{ pokemon.flavor_text }}
             </p>
           </div>
           <p><b class="fw-bold">ID:</b> {{ pokemon.id | pokeId }}</p>

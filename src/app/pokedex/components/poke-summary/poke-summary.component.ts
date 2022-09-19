@@ -26,8 +26,10 @@ export class PokeSummaryComponent implements OnInit {
     return this.route.paramMap.subscribe((map) => {
       let pokeId = map.get('pokeId');
       this.pokeService.getPokemon(pokeId).subscribe((poke) => {
-        this.pokemon = poke;
-        console.log(poke);
+        this.pokeService.getPokemonFlavor(pokeId).subscribe((flavor: any) => {
+          poke.flavor_text = flavor.flavor_text_entries![0].flavor_text;
+          this.pokemon = poke;
+        });
       });
     });
   }
