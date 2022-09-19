@@ -1,0 +1,12 @@
+@import "/src/scss/variables";
+
+.bg-light {
+  background-color: var(--bg-ligth) !important;
+}
+
+.badge {
+  position: absolute;
+  top: 8px;
+  right: 22px;
+  background: red;
+}

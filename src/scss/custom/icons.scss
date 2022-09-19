@@ -1,0 +1,41 @@
+.icon {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  height: 2rem;
+  width: 2rem;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+}
+
+.sm-icon {
+  height: 0.5rem !important;
+  width: 0.5rem !important;
+}
+
+.md-icon {
+  height: 1.5rem !important;
+  width: 1.5rem !important;
+}
+
+.ic-fav {
+  background-image: url("/assets/icons/heart.svg");
+  background-repeat: no-repeat;
+}
+
+.ic-fav-fill {
+  background-image: url("/assets/icons/heart-fill.svg");
+  background-repeat: no-repeat;
+}
+
+.ic-fav-fill-red {
+  background-image: url("/assets/icons/heart-fill-red.svg");
+  background-repeat: no-repeat;
+}
+
+.ic-arrow {
+  content: url("/assets/icons/arrow.svg");
+}

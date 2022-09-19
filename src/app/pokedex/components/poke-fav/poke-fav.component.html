@@ -1,0 +1,20 @@
+<div class="d-flex flex-row" route="/pokedex">
+  <i class="icon icon-sm ic-arrow clickable" [routerLink]="['pokedex']"></i>
+  <h2 class="fw-bold mx-2">Favoritos</h2>
+</div>
+
+<div class="row" *ngIf="pokemons.length > 0; else notFound">
+  <div
+    class="col-md-6 col-lg-4 col-sm-6 col-12"
+    *ngFor="let pokemon of pokemons"
+  >
+    <pkm-poke-item
+      [pokemon]="pokemon"
+      (favsChanged)="getFavPokemons()"
+    ></pkm-poke-item>
+  </div>
+</div>
+
+<ng-template #notFound>
+  <pkm-poke-not-found></pkm-poke-not-found>
+</ng-template>

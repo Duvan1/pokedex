@@ -1,0 +1,49 @@
+<div class="row" route="/pokedex">
+  <i class="icon icon-sm ic-arrow clickable" [routerLink]="['pokedex']"></i>
+</div>
+<div *ngIf="pokemon" class="row mb-4">
+  <div class="col-lg-8 col-12 mb-md-2">
+    <div class="d-flex h-100 justify-content-center align-items-center">
+      <img
+        [src]="pokemon.sprites.other.home.front_default"
+        [alt]="'Image ' + pokemon.name"
+      />
+    </div>
+  </div>
+  <div class="col-lg-4 col-12 p-lg-0 px-md-4">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="card w-100 p-4">
+        <div class="card-block px-2">
+          <div class="text-center">
+            <h4 class="card-title fw-bold">{{ pokemon.name | uppercase }}</h4>
+            <div class="card-text">
+              <div class="flex flex-row">
+                <span
+                  class="badge bg-secondary m-1"
+                  *ngFor="let pokeType of pokemon.types"
+                >
+                  {{ pokeType.type.name }}
+                </span>
+              </div>
+            </div>
+            <p class="text-center">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+          </div>
+          <p><b class="fw-bold">ID:</b> {{ pokemon.id | pokeId }}</p>
+          <p><b class="fw-bold">Altura:</b> {{ pokemon.height }}</p>
+          <p><b class="fw-bold">Peso:</b> {{ pokemon.weight }}</p>
+
+          <div class="row">
+            <button
+              type="button"
+              class="btn btn-danger btn-lg btn-block fw-bold"
+            >
+              Añadir a favoritos
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="card mb-4 py-2 border-none">
+  <div class="position-absolute card__pkm_fav">
+    <div class="p-3">
+      <pkm-fav-button
+        [check]="isFavCheck(pokemon.id)"
+        (eventFav)="addFav(pokemon.id)"
+      ></pkm-fav-button>
+    </div>
+  </div>
+  <div class="row no-gutters">
+    <div class="col-md-4 col-sm-12">
+      <img
+        [src]="pokemon.sprites.other.home.front_default"
+        class="img-fluid clickable"
+        (click)="goToPokemon(pokemon.id)"
+        [alt]="'Image ' + pokemon.name"
+      />
+    </div>
+    <div class="col-md-8 col-sm-12">
+      <div class="card-block px-2">
+        <small class="text-muted">{{ pokemon.id | pokeId }}</small>
+
+        <p class="card-title fw-bold">{{ pokemon.name }}</p>
+        <div class="card-text">
+          <div class="flex flex-row">
+            <span
+              class="badge bg-secondary m-1"
+              *ngFor="let pokeType of pokemon.types"
+            >
+              {{ pokeType.type.name }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

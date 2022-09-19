@@ -1,0 +1,17 @@
+<nav
+  class="navbar navbar-light bg-light justify-content-between nav-bar-top px-4"
+>
+  <a class="navbar-brand">
+    <img [src]="logo" alt="Logo Rocket" />
+  </a>
+  <form class="form-inline">
+    <div>
+      <i
+        class="icon ic-fav-fill clickable"
+        (click)="goToFav.emit()"
+        alt="Favorite Icon"
+      ></i
+      ><span *ngIf="counter > 0" class="badge badge-danger">{{ counter }}</span>
+    </div>
+  </form>
+</nav>

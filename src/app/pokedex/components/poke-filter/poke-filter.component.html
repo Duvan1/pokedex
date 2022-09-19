@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-lg-4 col-sm-12 col-md-6 col-12">
+    <h2 class="m-0 fw-bold">Pokemones</h2>
+  </div>
+  <div class="col-12 col-sm-12 col-md-6 col-lg-4 offset-lg-4">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control mx-lg-2"
+        [(ngModel)]="pokeSearch"
+        placeholder="Buscar un pokemon"
+        aria-label="Buscar un pokemon"
+        aria-describedby="basic-addon2"
+      />
+      <div class="input-group-append">
+        <pkm-button
+          [text]="'Buscar'"
+          [pkmType]="'primary'"
+          (eventPkm)="searhPokemon()"
+        ></pkm-button>
+      </div>
+    </div>
+  </div>
+</div>

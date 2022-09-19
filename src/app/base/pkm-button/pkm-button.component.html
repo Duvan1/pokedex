@@ -1,0 +1,8 @@
+<button
+  type="button"
+  (click)="eventPkm.emit()"
+  class="btn fw-bold btn-sm h-100"
+  [ngClass]="pkmType === 'primary' ? 'btn-danger' : 'btn-light'"
+>
+  {{ text }}
+</button>
