@@ -13,7 +13,7 @@ export class PokeFilterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  searhPokemon() {
+  searhPokemon() : void{
     this.search.emit(this.pokeSearch)
   }
 }

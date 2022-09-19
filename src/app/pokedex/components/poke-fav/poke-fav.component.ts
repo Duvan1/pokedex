@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Pokemon } from 'src/lib/models/pokemon.model';
 import { PokeServiceService } from 'src/lib/services/pokemon/poke-service.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { PokeServiceService } from 'src/lib/services/pokemon/poke-service.servic
   styleUrls: ['./poke-fav.component.scss'],
 })
 export class PokeFavComponent implements OnInit {
-  pokemons: any[] = [];
+  pokemons: Pokemon[] = [];
   constructor(private pokeService: PokeServiceService) {}
 
   ngOnInit(): void {
@@ -15,9 +16,11 @@ export class PokeFavComponent implements OnInit {
   }
 
   getFavPokemons() {
-    let listFav: any[] = JSON.parse(localStorage.getItem('poke_fav') || '[]');
+    let listFav: number[] = JSON.parse(
+      localStorage.getItem('poke_fav') || '[]'
+    );
     this.pokemons = [];
-    listFav.forEach((lp: any) => {
+    listFav.forEach((lp) => {
       this.pokeService.getPokemon(lp).subscribe((pokemon) => {
         this.pokemons.push(pokemon);
       });
